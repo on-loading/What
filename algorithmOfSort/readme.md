@@ -1,6 +1,6 @@
-#╨╞йЩап╠М
-     * uickSort()   ©ЛкыеепР
-	 * heapSort()  ╤яеепР
-	 * insertSort() ╡ЕхКеепР
-	 * bubbleSort() ц╟ещеепР
-	 * countingSort() ╪фйЩеепРё╛оч╤╗╥╤н╖н╙0~99
+#Е┤╫Ф∙╟Е┬≈Х║╗
+     * uickSort()   Е©╚И─÷Ф▌▓Е╨▐
+	 * heapSort()  Е═├Ф▌▓Е╨▐
+	 * insertSort() Ф▐▓Е┘╔Ф▌▓Е╨▐
+	 * bubbleSort() Е├▓ФЁ║Ф▌▓Е╨▐
+	 * countingSort() Х╝║Ф∙╟Ф▌▓Е╨▐О╪▄И≥░Е╝ Х▄┐Е⌡╢Д╦╨0~99
