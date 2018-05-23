@@ -1,15 +1,21 @@
 package sort;
 
+import java.util.Arrays;
+
 /**
  * @author LZing
+ * @since 2018/4
  * 
  * */
+
 
 public class Sort {
 	/**Sort.java中包含常见的各种排序算法：
 	 * quickSort()   快速排序
 	 * heapSort()  堆排序
 	 * insertSort() 插入排序
+	 * bubbleSort() 冒泡排序
+	 * countingSort() 计数排序，限定范围为0~99
 	 * */
 
 	
@@ -28,8 +34,38 @@ public class Sort {
     }
 	
 	
+	/**  冒泡排序，时间复杂度O(n^2)
+	 * */
+	public void bubbleSort(int[] a){
+		for(int i=0;i<a.length;i++){
+			for(int j=0;j<a.length-i-1;++j){
+				if(a[j]>a[j+1])
+					swap(a, j+1, j);  //较大的元素往后移
+			}
+		}
+	}
 	
 	
+	/**  计数排序，适合于元素比较小的情况，这里限定元素0<=x<100
+	 *   时间复杂度
+	 * */
+	public void countingSort(int[] a){
+		int count[]=new int[100];
+		try{
+			for(int i=0;i<a.length;i++)
+				count[a[i]]++;
+		}catch (Exception e) {
+			System.out.println("每个元素应满足0<=x<100");
+			e.printStackTrace();
+			System.exit(0);
+		}
+		int j=0;
+		for(int i=0;i<100;++i){
+			while(count[i]--!=0)
+				a[j++]=i;
+		}
+		
+	}
 	/** 插入排序 时间复杂度O（n^2）
 	 * */
 	public void  insertSort(int a[]) {
@@ -51,7 +87,6 @@ public class Sort {
 	
 	
 	/**  快速排序  时间复杂度O(nlog n)
-	 *   @param a 数组  
 	 *   @param left 数组起始下标（包含）
 	 *   @param right 数组结束下标（不包含）
 	 *   
@@ -163,4 +198,41 @@ public class Sort {
     	}
     	a[i]=temp;
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    /**  归并排序
+     * 
+     * */
+    public void mergeSort(int[] a) {
+		if(a.length<=1)
+			return;
+		int[] A=Arrays.copyOfRange(a, 0,a.length/2);
+		int[] B=Arrays.copyOfRange(a, a.length/2, a.length);
+		//todo
+		
+		
+		int i=0,m=0,n=0;
+		while(i<a.length){
+			if(m<A.length && A[m]<=B[n]){
+				
+			}
+		}
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
