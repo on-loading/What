@@ -1,5 +1,5 @@
 #函数列表
-         * uickSort()   快速排序 
+         * quickSort()   快速排序 
 	 * heapSort()  堆排序 
 	 * insertSort() 插入排序
 	 * bubbleSort() 冒泡排序
