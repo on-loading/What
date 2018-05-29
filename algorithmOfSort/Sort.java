@@ -2,6 +2,8 @@ package sort;
 
 import java.util.Arrays;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
+
 /**
  * @author LZing
  * @since 2018/4
@@ -16,6 +18,9 @@ public class Sort {
 	 * insertSort() 插入排序
 	 * bubbleSort() 冒泡排序
 	 * countingSort() 计数排序，限定范围为0~99
+	 * mergeSort() 归并排序
+	 * 
+	 * 
 	 * */
 
 	
@@ -206,25 +211,50 @@ public class Sort {
     
     
     
-    /**  归并排序
-     * 
+    /**  归并排序,时间复杂度O(N lg N)
+     *  @param N 表示元素个数
      * */
-    public void mergeSort(int[] a) {
+    public void mergeSort(int[] a,int N) {
+    	
 		if(a.length<=1)
 			return;
-		int[] A=Arrays.copyOfRange(a, 0,a.length/2);
-		int[] B=Arrays.copyOfRange(a, a.length/2, a.length);
-		//todo
-		
-		
-		int i=0,m=0,n=0;
-		while(i<a.length){
-			if(m<A.length && A[m]<=B[n]){
-				
-			}
-		}
+		int[] temp=new int[a.length];
+		mSort(a, temp, 0, N-1);
 	}
-    
+    /**  归并函数，把左右两半按升序合并起来
+     *   @param temp 临时开辟的数组空间，暂存结果
+     *   @param left 左半部分开始的位置
+     *   @param right 右半部分开始的位置
+     *   @param end 最后一个元素的位置
+     * */
+    public void merge(int[] a,int[] temp,int left,int right,int end){
+    	int leftEnd=right-1;
+    	int counter=left;
+    	int n=end-left+1;
+    	while(left<=leftEnd && right<=end){
+    		if(a[left]<=a[right])
+    			temp[counter++]=a[left++];
+    		else {
+				temp[counter++]=a[right++];
+			}
+    	}
+    	while(left<=leftEnd)
+    		temp[counter++]=a[left++];
+    	while(right<=end)
+    	    temp[counter++]=a[right++];
+    	for(int i=0;i<n;i++){ //从最后一个元素开始遍历
+    		a[end-i]=temp[end-i];
+    	}
+    }
+    public void mSort(int[] a,int[] temp,int left,int right){
+    	int center;
+    	if(left<right){  //递归处理左右两部分
+    		center=(left+right)/2;
+    		mSort(a,temp,left,center );
+    		mSort(a, temp, center+1, right);
+    		merge(a, temp, left, center+1,right);
+    	}
+    }
     
     
     
