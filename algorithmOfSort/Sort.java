@@ -19,7 +19,7 @@ public class Sort {
 	 * bubbleSort() 冒泡排序
 	 * countingSort() 计数排序，限定范围为0~99
 	 * mergeSort() 归并排序
-	 * 
+	 * selectSort() 选择排序
 	 * 
 	 * */
 
@@ -257,6 +257,20 @@ public class Sort {
     }
     
     
+    /**选择排序，时间复杂度O（n^2)
+     * 
+     * */
+    public void  selectSort(int[] a) {
+    	int len=a.length;
+    	for(int i=0;i<len;i++){
+    		int temp=i;
+    		for(int j=i+1;j<len;j++)
+    			if(a[temp]>a[j])
+    				temp=j;
+    		swap(a, i, temp);
+    	}
+		
+	}
     
     
     
