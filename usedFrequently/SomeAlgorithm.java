@@ -8,11 +8,12 @@ public class SomeAlgorithm {
 	/**  Multiply two long number ,with the return type of String
 	 *   @param s1 Input as a string
 	 *   @param s2 Input as a string
+	 *   
 	 **/
 	
 	public String longNumberMUL(String s1,String s2){
-		int c[]=new int[s1.length()+s2.length()-1];
-		int[] result=new int[c.length];
+		long c[]=new long[s1.length()+s2.length()-1];
+		long[] result=new long[c.length];
 		for(int i=0;i<s1.length();i++)   //两个乘数每位互相两两相乘，结果累加后保存到c[]中
 			for(int j=0;j<s2.length();j++){
 				c[i+j]+=(int)(s1.charAt(i)-'0')*(int)(s2.charAt(j)-'0');
@@ -25,7 +26,7 @@ public class SomeAlgorithm {
 		StringBuffer MULResult=new StringBuffer();
 		if(c[0]>10)  //判断是否还需向前再进一位
 			MULResult.append(c[0]/10);
-		for(int x:result)
+		for(long x:result)
 			MULResult.append(x);
 		return MULResult.toString();
 	}
@@ -92,10 +93,47 @@ public class SomeAlgorithm {
     	int len=s.length();
     	int[] next=new int[len];
     	for(int i=2;i<len;i++){   //next[0]和next[1]为0，所以从i=2开始遍历
-    		if(s.charAt(i-1)==s.charAt(next[i-1]))   //如果s[i]=s[next[i-1]]
+    		if(s.charAt(i-1)==s.charAt(next[i-1]))   //如果s[i]=s[next[i-1]]，在原有的基础上加1
     			next[i]=next[i-1]+1;
     	}
     	
     	return next;
     }
+    
+    /** Longest common String
+     * 
+     * */
+    public int LCS(String s1,String s2){
+    	if(s1.charAt(0)==s2.charAt(0)){
+    		//return Math.max(LCS(s1.substring(1),), LCS())
+    	}
+    	return 0;
+
+
+
+    }
+	/** 实现任意10进制到任意进制的整数转换，这里只做到20进制之前
+	 *  @param origin 原10进制数
+	 *  @param target 目标进制
+	 * */
+	public  String conversionNum(int origin,int target){
+		if(origin==0)
+			return "0";
+		String sym="0123456789ABCDEFGHIJ";    //加长这个sym就能做到20以上的进制转换。
+		int negative=0;
+		if(origin<0) {
+			negative = 1;
+			origin=Math.abs(origin);
+		}
+		StringBuffer buffer=new StringBuffer();
+		while(origin!=0){
+			int temp=origin%target;
+			buffer.append(sym.charAt(temp));
+			origin/=target;
+		}
+		if(negative==1)
+			buffer.append('-');
+		return buffer.reverse().toString();
+	}
+
 }
