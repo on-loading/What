@@ -1,5 +1,6 @@
 package anything;
 
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import sun.awt.image.ImageWatched;
 import sun.reflect.generics.tree.Tree;
 
@@ -20,8 +21,8 @@ class TreeNode{
 
 //链表节点
 class LinkNode {
-	public int var;
-	public LinkNode next;
+	int var;
+	LinkNode next;
 
 }
 
@@ -290,7 +291,7 @@ public class SomeAlgorithm {
 				//如果上一次不是访问右子节点，则先访问右子节点
 				if(lastVisited!=stack.peek().right){
 					current=stack.peek().right;
-					//lastVisited=current;  //此行代码的作用是到叶节点时，子节点为null，把null赋给lastVisited；没有这句会死循环
+					lastVisited=current;  //此行代码的作用是到叶节点时，子节点为null，把null赋给lastVisited；没有这句会死循环
 				}
 				//如果上一次是访问的右子节点，则直接把当前节点pop并visited
 				else {
@@ -306,7 +307,9 @@ public class SomeAlgorithm {
 
 	/**
 	 * 生成一棵完全二叉树
-	 * 主要利用队列先进先出的特点*/
+	 * 主要利用队列先进先出的特点
+	 * @param a 把数组中的元素按顺序一层一层建树
+	 * */
 	public TreeNode generalTree(int [] a){
 		if(a.length==0)
 			return null;
@@ -328,5 +331,52 @@ public class SomeAlgorithm {
 		return root;
 	}
 
+	/**
+	 * z字型遍历二叉树
+	 * @param root 根节点
+	 * */
+     public void traverseTreeByZ(TreeNode root){
+     	if(root==null)
+     		return;
+     	LinkedBlockingQueue<TreeNode> queue=new LinkedBlockingQueue<>();
+     	TreeNode last=root;
+     	TreeNode nextLast=null;
+     	TreeNode cur;
+     	queue.add(root);
+     	while(!queue.isEmpty()){
+     		cur=queue.poll();
+     		System.out.print(cur.val+" ");
+
+     		if(cur.left!=null){
+     			queue.add(cur.left);
+     			nextLast=cur.left;
+			}
+			if(cur.right!=null){
+				queue.add(cur.right);
+				nextLast=cur.right;
+			}
+			if(cur==last) {
+				System.out.println();
+				last = nextLast;
+			}
+		}
+	 }
+
+	 /**
+	  * 判断链表是有环，主要通过快慢指针的追赶判断
+	  * @param head 链表头部
+	  * @return boolean
+	  * */
+	 public boolean isLinkLoop(LinkNode head){
+	 	LinkNode slowPointer=head;  //慢指针，每次走一步
+	 	LinkNode fastPointer=head;  //快指针，每次走两步
+	    while (slowPointer!=null && fastPointer!=null){
+	    	slowPointer=slowPointer.next;
+	    	fastPointer=fastPointer.next.next;
+	    	if(slowPointer==fastPointer)
+	    		return true;
+		}
+	 	return false;
+	 }
 
 }
