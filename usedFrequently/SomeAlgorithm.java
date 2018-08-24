@@ -28,8 +28,15 @@ class LinkNode {
 
 
 public class SomeAlgorithm {
-	
-	
+
+	public SomeAlgorithm(){
+
+	}
+	public SomeAlgorithm(String message){
+		System.out.println("SomeAlgorithm被实例化，信息："+message);
+	}
+
+
 	/**  任意长整数相乘
 	 *   @param s1 Input as a string
 	 *   @param s2 Input as a string
@@ -377,6 +384,44 @@ public class SomeAlgorithm {
 	    		return true;
 		}
 	 	return false;
+	 }
+
+	 /**
+	  * 寻找环入口
+	  * @param head 链表头部
+	  * @return 碰撞节点
+	  * */
+	 /*public*/
+
+	 /**
+	  * 统计1-n中数字x出现的次数
+	  * */
+	 public int countOfX(int n,int x){
+	 	if(x<0 || x>9 || n<=0)
+			try {
+			 throw new Exception("x必须在【0-9】之间且n大于0");
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 }
+		int count=0;
+	 	int current=n;
+	 	String nString=String.valueOf(n);
+	 	int len=nString.length(); //计算总共有多少位
+		 for(int i=1;i<=len;i++){
+		 	if(x==0 && i==len)  //如果求0出现的次数，最高位不能是0，值遍历到最高位的下一位
+		 		break;
+		 	current/=10;   //当前系数
+            int exp=(int)Math.pow(10,i);//当前10的幂次级
+		 	int base=current*exp/10;  //  基础值，exp/10等于10的i-1次幂
+		 	int iValue=(int)(nString.charAt(len-i)-'0'); //第i位的值
+			 if(x<iValue)   //小于第i位的值
+			 	count+=base+(int)Math.pow(10,i-1);
+			 else if(x>iValue)  //大于第i位的值
+			 	count+=base;
+			 else    //等于第i位
+			 	count+=base+Integer.valueOf(nString.substring(len-i+1))+1;
+		 }
+		 return count;
 	 }
 
 }
