@@ -431,7 +431,7 @@ public class SomeAlgorithm {
 	  * 两数异或表示部分和，两数与表示进位
 	  * */
 	 public int addByBitOperation(int num1,int num2){
-	 	int sum=0; //两个数做异或，如果没有进位就是和
+	 	int sum=0; //两个数做异或，表示部分和，如果没有进位就是和
 	 	int carry=0;  //进位，并左移一位
 	 	do{
 	 		sum=num1^num2;
