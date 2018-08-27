@@ -395,6 +395,8 @@ public class SomeAlgorithm {
 
 	 /**
 	  * 统计1-n中数字x出现的次数
+	  * @param n 整数上限，n大于0
+	  * @param x 要求出现次数的数字，在0-9之间
 	  * */
 	 public int countOfX(int n,int x){
 	 	if(x<0 || x>9 || n<=0)
@@ -422,6 +424,22 @@ public class SomeAlgorithm {
 			 	count+=base+Integer.valueOf(nString.substring(len-i+1))+1;
 		 }
 		 return count;
+	 }
+
+	 /**
+	  * 通过位运算计算两个整数相加
+	  * 两数异或表示部分和，两数与表示进位
+	  * */
+	 public int addByBitOperation(int num1,int num2){
+	 	int sum=0; //两个数做异或，如果没有进位就是和
+	 	int carry=0;  //进位，并左移一位
+	 	do{
+	 		sum=num1^num2;
+	 		carry=(num1&num2)<<1;
+	 		num1=sum;
+	 		num2=carry;
+		}while(num2!=0);  //循环直到进位为0
+	 	return sum;
 	 }
 
 }
