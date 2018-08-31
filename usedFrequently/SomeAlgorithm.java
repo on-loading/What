@@ -339,6 +339,47 @@ public class SomeAlgorithm {
 	}
 
 	/**
+	 * 镜像翻转二叉树，递归版本
+	 *
+	 * */
+	public TreeNode invertTreeByRecursion(TreeNode root){
+		if(root==null)
+			return root;
+		//左右子节点相互交换
+		TreeNode temp=root.left;
+		root.left=root.right;
+		root.right=temp;
+		//对左右子树做递归镜像处理
+		invertTreeByRecursion(root.left);
+		invertTreeByRecursion(root.right);
+		return root;
+	}
+
+	/**
+	 * 非递归方式翻转二叉树
+	 * */
+	public TreeNode invertTree(TreeNode root){
+		if(root==null)
+			return root;
+		Stack<TreeNode> stack=new Stack<>();
+		stack.push(root);
+		while(!stack.isEmpty()){
+			TreeNode cur=stack.pop();
+			if(cur.right!=null)
+				stack.push(cur.right);
+			if(cur.left!=null)
+				stack.push(cur.left);
+
+			TreeNode temp=cur.left;
+			cur.left=cur.right;
+			cur.right=temp;
+		}
+		return root;
+	}
+
+
+
+	/**
 	 * z字型遍历二叉树
 	 * @param root 根节点
 	 * */
