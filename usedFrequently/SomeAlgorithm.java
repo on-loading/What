@@ -483,4 +483,21 @@ public class SomeAlgorithm {
 	 	return sum;
 	 }
 
+	 /**
+	  * 整数分解成质因数
+	  * */
+	 public List<Integer> func(int n) {
+		 if (n < 2)
+			 return null;
+		 List<Integer> list = new ArrayList<>();
+		 for (int i = 2; i <= n; i++) {
+			 if (n % i == 0) {
+				 list.add(i);
+				 n /= i;
+				 i--;
+			 }
+		 }
+		 return list;
+	 }
+
 }
